@@ -25,6 +25,7 @@ Anyhows this is how you set it up:
             "commandPrefix": "!"
         }
     This is so i have zero chances of accidently including the token in my repo. Applications, bots and tokens can be created here https://discordapp.com/developers. But you should probably use some guide if you've never done it before.
+    Go to the OAuth section of your application, add the permissions and navigate to the generated link to add it to your server
 4.  Open the "whitelist.json" and add your discord tag to the whitelist so you may manage everything from the discord chat later.
 5.  Run "npm install" in the repository folder to install the dependencies.
 6.  Run "node bot.js" to start the bot.
