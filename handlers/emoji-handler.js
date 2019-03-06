@@ -2,6 +2,7 @@ const DiscordOutputFormatter = require("../helpers/discord-output-formatter");
 const FileWrapper = require("../helpers/file-wrapper");
 const FORBIDDEN_NAMES = ["add", "remove", "list"];
 const EMOJI_JSON_NAME = "emojis.json";
+const constants = require("../util/constants");
 const isAllowedToAlter = (user, whitelist) => {
   return whitelist.users.includes(user);
 };
@@ -37,7 +38,7 @@ exports.parse = (args, user, whitelist, emojis, cmdPrefix, callback) => {
       }
       try {
         FileWrapper.writeObjectToJsonFile(
-          EMOJI_JSON_NAME,
+          constants.getEmojisPath(),
           {
             emojis: [
               ...emojis.emojis,
@@ -45,7 +46,7 @@ exports.parse = (args, user, whitelist, emojis, cmdPrefix, callback) => {
             ]
           },
           () => {
-            FileWrapper.readJsonFileToObject("emojis.json", newEmojis => {
+            FileWrapper.readJsonFileToObject(constants.getEmojisPath(), newEmojis => {
               callback(
                 `Emoji \"${arguments[0]}\" was successfully added`,
                 newEmojis
@@ -77,10 +78,10 @@ exports.parse = (args, user, whitelist, emojis, cmdPrefix, callback) => {
       }
       try {
         FileWrapper.writeObjectToJsonFile(
-          EMOJI_JSON_NAME,
+          constants.getEmojisPath(),
           { emojis: emojis.emojis.filter(e => e.alias !== arguments[0]) },
           () => {
-            FileWrapper.readJsonFileToObject("emojis.json", newEmojis => {
+            FileWrapper.readJsonFileToObject(constants.getEmojisPath(), newEmojis => {
               callback(`Emoji \"${arguments[0]}\" was removed`, newEmojis);
             });
           }
