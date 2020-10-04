@@ -1,6 +1,6 @@
 #   Readme
 
-This bot sucks but you may use it however you like.
+First of all, this is not a particulary good bot, it was made just for fun for me and my friends.
 
 It has functions such as:
     
